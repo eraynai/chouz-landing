@@ -1,0 +1,220 @@
+/* style.css */
+
+/* Base layout */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #111827; /* dark gray */
+  background-color: #f3f4f6; /* light neutral */
+}
+
+.wrapper {
+  max-width: 720px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding-inline: 2rem;
+  }
+}
+
+/* Typography */
+h1,
+h2 {
+  font-weight: 600;
+  color: #111827;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.3;
+  margin-bottom: 1.25rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1.25rem;
+}
+
+li + li {
+  margin-top: 0.25rem;
+}
+
+/* Header */
+.site-header {
+  padding-block: 1.25rem;
+}
+
+.brand {
+  font-size: 0.875rem;
+  text-transform: lowercase;
+  letter-spacing: 0.12em;
+  color: #4b5563;
+}
+
+/* Sections */
+.hero {
+  padding-block: 2.5rem 2rem;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: #374151;
+  margin-bottom: 1.25rem;
+}
+
+.hero-body p {
+  color: #111827;
+}
+
+.hero-body p + p {
+  margin-top: 0.35rem;
+}
+
+.hero-cta {
+  margin-top: 1.75rem;
+}
+
+.section {
+  padding-block: 1.75rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.section-signup {
+  padding-bottom: 3rem;
+}
+
+/* Buttons and inputs */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background-color: #111827;
+  color: #f9fafb;
+}
+
+.button:hover {
+  background-color: #030712;
+}
+
+.button:disabled {
+  cursor: default;
+  background-color: #4b5563;
+}
+
+input[type="email"] {
+  width: 100%;
+  max-width: 360px;
+  padding: 0.6rem 0.7rem;
+  border-radius: 0.375rem;
+  border: 1px solid #d1d5db;
+  font: inherit;
+  color: inherit;
+  background-color: #f9fafb;
+}
+
+input[type="email"]:focus-visible {
+  border-color: #111827;
+  outline: 2px solid #111827;
+  outline-offset: 2px;
+}
+
+/* Focus styles for interactive elements */
+a,
+button {
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #111827;
+  outline-offset: 3px;
+}
+
+/* Hero microcopy */
+.microcopy {
+  font-size: 0.85rem;
+  color: #4b5563;
+  margin-top: 0.65rem;
+}
+
+/* Form */
+.form-field {
+  margin-bottom: 0.9rem;
+}
+
+.form-field label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  color: #374151;
+}
+
+.signup-intro {
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.form-message {
+  margin-top: 0.85rem;
+  font-size: 0.9rem;
+  min-height: 1.4em; /* reserve space even when empty */
+  color: #374151;
+}
+
+.form-message--error {
+  color: #b91c1c; /* red-700 */
+}
+
+.form-message--success {
+  color: #166534; /* green-700 */
+}
+
+/* Footer */
+.site-footer {
+  padding-block: 1.5rem 2.5rem;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 1.5rem;
+}
+
+.footer-text {
+  font-size: 0.85rem;
+  color: #6b7280;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}

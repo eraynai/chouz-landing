@@ -1,18 +1,140 @@
-<!doctype html>
+<!-- index.html -->
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Chouz landing page" />
-    <title>Chouz</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <main>
-      <header>
-        <h1>Chouz</h1>
-        <p>Coming soon.</p>
-      </header>
-    </main>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <title>chouz — a gentle 7-morning path</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A gentle 7-morning path for freelancers and creative professionals who want to start the day with calm, not chaos." />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrapper">
+      <p class="brand" aria-label="chouz">chouz</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="wrapper">
+        <h1 id="hero-heading">Start your day with calm — not chaos.</h1>
+
+        <p class="hero-subtitle">
+          A gentle 7-morning path for freelancers and creative professionals who want to feel grounded, focused, and genuinely ready for the day — without streaks, pressure, or productivity games.
+        </p>
+
+        <div class="hero-body">
+          <p>Most mornings start with noise.</p>
+          <p>Notifications. Anxiety. The feeling that you’re already behind.</p>
+
+          <p>
+            Chouz is an intentionally slow, gentle morning path for people who work for themselves — and want to arrive in the day before it asks anything of them.
+          </p>
+
+          <p>No gamification.</p>
+          <p>No performance tracking.</p>
+          <p>Just a calm way to begin.</p>
+        </div>
+
+        <div class="hero-cta">
+          <button type="button" class="button button-primary" id="hero-cta">
+            Begin the chouz Morning Path
+          </button>
+          <p class="microcopy">
+            Delivered by email. A few quiet minutes each morning. Unsubscribe anytime.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="experience-heading">
+      <div class="wrapper">
+        <h2 id="experience-heading">Over 7 mornings, you’ll experience:</h2>
+        <ul>
+          <li>Short, calming prompts you can read as you go</li>
+          <li>Gentle structure, without obligation</li>
+          <li>A different relationship to mornings — one you’ll actually want to return to</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="for-you-heading">
+      <div class="wrapper">
+        <h2 id="for-you-heading">This is for you if:</h2>
+        <ul>
+          <li>You make your own schedule</li>
+          <li>Your mornings feel rushed or emotionally noisy</li>
+          <li>You want calm without discipline or pressure</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="not-for-heading">
+      <div class="wrapper">
+        <h2 id="not-for-heading">This is not:</h2>
+        <ul>
+          <li>A productivity system</li>
+          <li>A habit-streak challenge</li>
+          <li>A meditation app replacement</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="signup" class="section section-signup" aria-labelledby="signup-heading">
+      <div class="wrapper">
+        <h2 id="signup-heading">Sign up for chouz</h2>
+        <p class="signup-intro">Join the free 7-morning journey.</p>
+
+        <!--
+          Kit (ConvertKit) embed placeholder
+
+          When you're ready to connect Kit, you can:
+
+          Option 1: Replace the form below with your Kit HTML embed code.
+
+          Option 2: Keep this form markup and instead paste your Kit JS embed
+          before the closing </body> tag, following Kit's instructions.
+
+          Make sure to keep an aria-live region for messages and clear labels.
+        -->
+        <form id="signup-form" novalidate>
+          <div class="form-field">
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <button type="submit" class="button button-primary" id="signup-button">
+            Begin the chouz Morning Path
+          </button>
+        </form>
+
+        <p
+          id="form-message"
+          class="form-message"
+          aria-live="polite"
+          role="status"
+        ></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrapper">
+      <p class="footer-text">
+        <span>© chouz</span>
+        <span aria-hidden="true">·</span>
+        <span>No streaks. No pressure. Just a calm way to begin.</span>
+      </p>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
 </html>
