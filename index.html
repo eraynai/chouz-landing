@@ -80,10 +80,10 @@
             opacity: 1;
             transform: translateY(0);
         }.hero-bg {
-            background: radial-gradient(circle at 50% 50%, rgba(200, 210, 230, 0.2) 0%, rgba(248, 249, 250, 0) 70%);
+            background-color: transparent;
         }
         .dark .hero-bg {
-            background: radial-gradient(circle at 50% 40%, rgba(30, 35, 60, 0.5) 0%, rgba(15, 15, 19, 0) 70%);
+            background-color: transparent;
         }
         .hero-overlay {
             position: absolute;
@@ -96,19 +96,19 @@
         }
         .dark .hero-overlay {
             mix-blend-mode: soft-light;
+            /* Simplified gradient to avoid a visible band where the hero ends */
             background:
-                radial-gradient(circle at 50% 0%, rgba(31, 41, 55, 0.7) 0%, rgba(15, 23, 42, 0) 60%),
-                radial-gradient(circle at 50% 100%, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0) 80%);
+                radial-gradient(circle at 50% 0%, rgba(31, 41, 55, 0.55) 0%, rgba(15, 23, 42, 0) 70%);
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans antialiased transition-colors duration-[2500ms] ease-in-out">
-<nav class="fixed w-full z-50 top-0 transition-all duration-[2500ms] bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-transparent">
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans antialiased ease-in-out">
+<nav class="fixed w-full z-50 top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-transparent">
 <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
 <a class="text-lg font-medium tracking-tight hover:opacity-70 transition-opacity" href="#">chouz</a>
 </div>
 </nav>
-<header class="relative min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden hero-bg transition-colors duration-[2500ms]">
+<header class="relative min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden hero-bg">
 <div class="hero-overlay"></div>
 <div class="relative max-w-2xl mx-auto px-6 z-10 text-center md:text-left">
 <div class="animate-fade-in-up">
@@ -152,7 +152,7 @@
 </header>
 <main class="max-w-4xl mx-auto px-6 pb-24 space-y-32">
 <section class="reveal grid md:grid-cols-2 gap-12 items-center">
-<div class="bg-secondary dark:bg-surface-dark p-8 rounded-2xl md:order-2 hover:shadow-md transition-all duration-500">
+<div class="bg-secondary dark:bg-background-dark p-8 rounded-2xl md:order-2 hover:shadow-md transition-all duration-500">
 <div class="flex items-baseline mb-2">
 <span class="text-5xl font-serif text-primary dark:text-white mr-2" id="counter">0</span>
 <span class="text-xl text-muted-light dark:text-muted-dark">mornings</span>
@@ -247,7 +247,7 @@
 </div>
 </section>
 </main>
-<footer class="border-t border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark py-12 transition-colors duration-[2500ms]">
+<footer class="border-t border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark py-12">
 <div class="max-w-4xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-light dark:text-muted-dark opacity-80">
 <div class="flex items-center gap-6">
 <span>© chouz</span>
@@ -326,5 +326,18 @@
                 counterElement.textContent = Math.floor(count);
             }, interval);
         }
+
+        // Enable smooth color transitions AFTER initial paint to avoid white flash
+        window.addEventListener('load', () => {
+            const body = document.body;
+            const nav = document.querySelector('nav');
+            const header = document.querySelector('header');
+            const footer = document.querySelector('footer');
+
+            if (body) body.classList.add('transition-colors', 'duration-[2500ms]', 'ease-in-out');
+            if (nav) nav.classList.add('transition-all', 'duration-[2500ms]');
+            if (header) header.classList.add('transition-colors', 'duration-[2500ms]');
+            if (footer) footer.classList.add('transition-colors', 'duration-[2500ms]');
+        });
     </script>
 </body></html>
