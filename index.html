@@ -1,4 +1,4 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="scroll-smooth dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -58,7 +58,7 @@
                 },
             },
         };
-    </script>
+</script>
 <style>::-webkit-scrollbar {
             width: 8px;
         }
@@ -100,7 +100,7 @@
             background:
                 radial-gradient(circle at 50% 0%, rgba(31, 41, 55, 0.55) 0%, rgba(15, 23, 42, 0) 70%);
         }
-    </style>
+</style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans antialiased ease-in-out">
 <nav class="fixed w-full z-50 top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-transparent">
@@ -154,7 +154,7 @@
 <section class="reveal">
 <div class="relative w-full max-w-4xl mx-auto">
 <div class="text-center mb-8">
-<h2 class="text-xl font-serif text-muted-light dark:text-muted-dark tracking-wide">Hi, I'm Elli</h2>
+<h2 class="text-2xl md:text-3xl font-serif">Hi, I'm Elli</h2>
 <p class="text-sm text-gray-500 dark:text-gray-400 mt-2 font-light">Please click on the video to learn why adopting a morning routine transformed my relationship to stress and changed my life.</p>
 </div>
 <div class="group relative aspect-[3/2] w-full rounded-2xl overflow-hidden bg-secondary dark:bg-surface-dark shadow-xl ring-1 ring-gray-900/5 dark:ring-white/10" id="intro-video-player" data-video-id="Xr7IdtxRI_U">
@@ -253,6 +253,30 @@
 <div class="relative z-10 max-w-md mx-auto">
 <h2 class="text-3xl font-serif mb-4">Sign up for chouz</h2>
 <p class="text-muted-light dark:text-muted-dark mb-8">Join the free 7-morning journey.</p>
+<div class="mb-8 py-6 px-4 bg-secondary/50 dark:bg-white/5 rounded-2xl border border-gray-100 dark:border-white/5 backdrop-blur-sm">
+<div class="flex items-center justify-center gap-2 mb-4 text-xs font-medium uppercase tracking-widest text-muted-light dark:text-muted-dark opacity-80">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span>Registration Closes In</span>
+</div>
+<div class="grid grid-cols-4 gap-2 md:gap-4 max-w-sm mx-auto text-center" id="countdown">
+<div class="flex flex-col items-center">
+<span class="text-2xl md:text-3xl font-serif font-medium text-primary dark:text-white tabular-nums tracking-tight" data-type="days">02</span>
+<span class="text-[10px] uppercase tracking-widest text-muted-light dark:text-gray-500 mt-2">Days</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-2xl md:text-3xl font-serif font-medium text-primary dark:text-white tabular-nums tracking-tight" data-type="hours">14</span>
+<span class="text-[10px] uppercase tracking-widest text-muted-light dark:text-gray-500 mt-2">Hours</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-2xl md:text-3xl font-serif font-medium text-primary dark:text-white tabular-nums tracking-tight" data-type="minutes">35</span>
+<span class="text-[10px] uppercase tracking-widest text-muted-light dark:text-gray-500 mt-2">Mins</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-2xl md:text-3xl font-serif font-medium text-primary dark:text-white tabular-nums tracking-tight" data-type="seconds">12</span>
+<span class="text-[10px] uppercase tracking-widest text-muted-light dark:text-gray-500 mt-2">Secs</span>
+</div>
+</div>
+</div>
 <form class="space-y-4" onsubmit="event.preventDefault(); alert('Welcome to chouz. Check your inbox.');">
 <div class="text-left">
 <label class="sr-only" for="email">Email address</label>
@@ -436,5 +460,49 @@
         if (header) header.classList.add('transition-colors', 'duration-[2500ms]');
         if (footer) footer.classList.add('transition-colors', 'duration-[2500ms]');
     });
+    // Counter Animation
+        function animateCounter() {
+            const counterElement = document.getElementById('counter');
+            let count = 0;
+            const target = 7;
+            const duration = 1500; // ms
+            const interval = duration / 20; // steps
+            const timer = setInterval(() => {
+                count += 0.5; // Increment by decimal for smooth effect then round
+                if(count >= target) {
+                    count = target;
+                    clearInterval(timer);
+                }
+                counterElement.textContent = Math.floor(count);
+            }, interval);
+        }
+        // Countdown Timer Logic
+        function initCountdown() {
+            const countdownContainer = document.getElementById('countdown');
+            if(!countdownContainer) return;
+            // Set end time to 3 days from now
+            let endTime = new Date();
+            endTime.setSeconds(endTime.getSeconds() + 250000); 
+            function updateTimer() {
+                const currentTime = new Date().getTime();
+                const timeLeft = endTime - currentTime;
+                if (timeLeft < 0) {
+                    // Reset automatically for demo persistence
+                    endTime = new Date();
+                    endTime.setSeconds(endTime.getSeconds() + 250000);
+                }
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                countdownContainer.querySelector('[data-type="days"]').textContent = days.toString().padStart(2, '0');
+                countdownContainer.querySelector('[data-type="hours"]').textContent = hours.toString().padStart(2, '0');
+                countdownContainer.querySelector('[data-type="minutes"]').textContent = minutes.toString().padStart(2, '0');
+                countdownContainer.querySelector('[data-type="seconds"]').textContent = seconds.toString().padStart(2, '0');
+            }
+            setInterval(updateTimer, 1000);
+            updateTimer();
+        }
+        initCountdown();
 </script>
 </body></html>
