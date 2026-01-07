@@ -108,7 +108,7 @@
 <a class="text-lg font-medium tracking-tight hover:opacity-70 transition-opacity" href="#">chouz</a>
 </div>
 </nav>
-<header class="relative min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden hero-bg">
+<header class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden hero-bg">
 <div class="hero-overlay"></div>
 <div class="relative max-w-2xl mx-auto px-6 z-10 text-center md:text-left">
 <div class="animate-fade-in-up">
@@ -151,6 +151,25 @@
 </div>
 </header>
 <main class="max-w-4xl mx-auto px-6 pb-24 space-y-32">
+<section class="reveal">
+<div class="relative w-full max-w-4xl mx-auto">
+<div class="text-center mb-8">
+<h2 class="text-xl font-serif text-muted-light dark:text-muted-dark tracking-wide">Hi, I'm Elli</h2>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-2 font-light">Please click on the video to learn why adopting a morning routine transformed my relationship to stress and changed my life.</p>
+</div>
+<div class="group relative aspect-[3/2] w-full rounded-2xl overflow-hidden bg-secondary dark:bg-surface-dark shadow-xl ring-1 ring-gray-900/5 dark:ring-white/10" id="intro-video-player" data-video-id="Xr7IdtxRI_U">
+<!-- Static placeholder image behind the play button -->
+<img src="/images/place-holder-morning-routine.png" alt="Elli speaking about chouz and the 7-morning path" class="absolute inset-0 w-full h-full object-cover" id="intro-video-placeholder" />
+
+<!-- Custom overlay + play button -->
+<button type="button" class="absolute inset-0 flex items-center justify-center group-hover:bg-gray-50/60 dark:group-hover:bg-black/60 transition-colors duration-500 cursor-pointer" aria-label="Play introduction video" id="intro-video-overlay">
+<div class="relative flex items-center justify-center w-20 h-20 rounded-full bg-transparent border-2 border-white/80 dark:border-white/60 shadow-lg group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl text-white ml-1">play_arrow</span>
+</div>
+</button>
+</div>
+</div>
+</section>
 <section class="reveal grid md:grid-cols-2 gap-12 items-center">
 <div class="bg-secondary dark:bg-background-dark p-8 rounded-2xl md:order-2 hover:shadow-md transition-all duration-500">
 <div class="flex items-baseline mb-2">
@@ -260,84 +279,162 @@
 </div>
 </div>
 </footer>
+<script src="https://www.youtube.com/iframe_api"></script>
 <script>
-        // Scroll-Based Theme Logic
-        const htmlElement = document.documentElement;
-        let ticking = false;
-        function updateTheme() {
-            const scrollY = window.scrollY;
-            const threshold = window.innerHeight * 0.15; // Trigger transition earlier (at 15%) for a smoother onset
-            // If user has scrolled down past threshold, switch to light (morning)
-            // If user is at the top, stay dark (night/pre-dawn)
-            if (scrollY > threshold) {
-                if (htmlElement.classList.contains('dark')) {
-                    htmlElement.classList.remove('dark');
-                }
-            } else {
-                if (!htmlElement.classList.contains('dark')) {
-                    htmlElement.classList.add('dark');
-                }
+    // Scroll-Based Theme Logic
+    const htmlElement = document.documentElement;
+    let ticking = false;
+    function updateTheme() {
+        const scrollY = window.scrollY;
+        const threshold = window.innerHeight * 0.15; // Trigger transition earlier (at 15%) for a smoother onset
+        // If user has scrolled down past threshold, switch to light (morning)
+        // If user is at the top, stay dark (night/pre-dawn)
+        if (scrollY > threshold) {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+            }
+        } else {
+            if (!htmlElement.classList.contains('dark')) {
+                htmlElement.classList.add('dark');
             }
         }
-        // Initialize immediately
-        updateTheme();
-        // Listen for scroll events with requestAnimationFrame throttling
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    updateTheme();
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
-        // Intersection Observer for Reveal on Scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    if (entry.target.querySelector('#counter')) {
-                        animateCounter();
-                    }
-                    observer.unobserve(entry.target);
-                }
+    }
+    // Initialize immediately
+    updateTheme();
+    // Listen for scroll events with requestAnimationFrame throttling
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateTheme();
+                ticking = false;
             });
-        }, observerOptions);
-        document.querySelectorAll('.reveal').forEach(section => {
-            observer.observe(section);
-        });
-        // Counter Animation
-        function animateCounter() {
-            const counterElement = document.getElementById('counter');
-            let count = 0;
-            const target = 7;
-            const duration = 1500; // ms
-            const interval = duration / 20; // steps
-            const timer = setInterval(() => {
-                count += 0.5; // Increment by decimal for smooth effect then round
-                if(count >= target) {
-                    count = target;
-                    clearInterval(timer);
+            ticking = true;
+        }
+    });
+    // Intersection Observer for Reveal on Scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                if (entry.target.querySelector('#counter')) {
+                    animateCounter();
                 }
-                counterElement.textContent = Math.floor(count);
-            }, interval);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    document.querySelectorAll('.reveal').forEach(section => {
+        observer.observe(section);
+    });
+    // Counter Animation
+    function animateCounter() {
+        const counterElement = document.getElementById('counter');
+        let count = 0;
+        const target = 7;
+        const duration = 1500; // ms
+        const interval = duration / 20; // steps
+        const timer = setInterval(() => {
+            count += 0.5; // Increment by decimal for smooth effect then round
+            if(count >= target) {
+                count = target;
+                clearInterval(timer);
+            }
+            counterElement.textContent = Math.floor(count);
+        }, interval);
+    }
+
+    // Intro video custom player (YouTube embed on click, reset to title card on end)
+    (function () {
+    const player = document.getElementById('intro-video-player');
+    if (!player) return;
+
+    const overlay = document.getElementById('intro-video-overlay');
+    const placeholder = document.getElementById('intro-video-placeholder');
+    if (!overlay || !placeholder) return;
+
+    const videoId = player.dataset.videoId; // e.g. "AV04lnnfU1o"
+    if (!videoId) return;
+
+    let ytPlayer = null;
+    let iframeWrapper = null;
+
+    function showTitleCard() {
+        // Destroy/remove the YouTube player
+        if (ytPlayer) {
+        ytPlayer.destroy();
+        ytPlayer = null;
+        }
+        if (iframeWrapper) {
+        iframeWrapper.remove();
+        iframeWrapper = null;
         }
 
-        // Enable smooth color transitions AFTER initial paint to avoid white flash
-        window.addEventListener('load', () => {
-            const body = document.body;
-            const nav = document.querySelector('nav');
-            const header = document.querySelector('header');
-            const footer = document.querySelector('footer');
+        // Show poster + overlay again
+        placeholder.classList.remove('hidden');
+        overlay.classList.remove('opacity-0', 'pointer-events-none');
+    }
 
-            if (body) body.classList.add('transition-colors', 'duration-[2500ms]', 'ease-in-out');
-            if (nav) nav.classList.add('transition-all', 'duration-[2500ms]');
-            if (header) header.classList.add('transition-colors', 'duration-[2500ms]');
-            if (footer) footer.classList.add('transition-colors', 'duration-[2500ms]');
+    function startVideo() {
+        // Hide poster + overlay
+        placeholder.classList.add('hidden');
+        overlay.classList.add('opacity-0', 'pointer-events-none');
+
+        // Wrapper for the YouTube player
+        iframeWrapper = document.createElement('div');
+        iframeWrapper.id = 'intro-video-iframe-wrapper';
+        iframeWrapper.className = 'absolute inset-0 w-full h-full';
+        player.appendChild(iframeWrapper);
+
+        // Create YT player
+        ytPlayer = new YT.Player(iframeWrapper, {
+        videoId: videoId,
+        playerVars: {
+            autoplay: 1,
+            rel: 0,
+            modestbranding: 1,
+            playsinline: 1
+        },
+        events: {
+            onStateChange: function (event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                showTitleCard();
+            }
+            }
+        }
         });
-    </script>
+    }
+
+    function handleClick() {
+        // If API is ready, start immediately; otherwise wait for it
+        if (window.YT && window.YT.Player) {
+        startVideo();
+        return;
+        }
+
+        const prevReady = window.onYouTubeIframeAPIReady;
+        window.onYouTubeIframeAPIReady = function () {
+        if (typeof prevReady === 'function') prevReady();
+        startVideo();
+        };
+    }
+
+    overlay.addEventListener('click', handleClick);
+    })();
+    // Enable smooth color transitions AFTER initial paint to avoid white flash
+    window.addEventListener('load', () => {
+        const body = document.body;
+        const nav = document.querySelector('nav');
+        const header = document.querySelector('header');
+        const footer = document.querySelector('footer');
+
+        if (body) body.classList.add('transition-colors', 'duration-[2500ms]', 'ease-in-out');
+        if (nav) nav.classList.add('transition-all', 'duration-[2500ms]');
+        if (header) header.classList.add('transition-colors', 'duration-[2500ms]');
+        if (footer) footer.classList.add('transition-colors', 'duration-[2500ms]');
+    });
+</script>
 </body></html>
